@@ -1,0 +1,19 @@
+{% extends 'master.html' %}
+{% load static %}
+{% block content %}
+    <div class="row d-flex col-4 m-auto my-5">
+        <form method="post" action="/donations/donate/{{ donation.id  }}">
+            {% csrf_token %}
+            <fieldset>
+                <legend class="border-bottom mb-4 my-5">Donating for {{ donation.name }}, {{ donation.phone }}</legend>
+                <label>Amount</label><br>
+                <input name="price" class="form-control" placeholder="Enter amount to donate"><br>
+                <label>Phone</label><br>
+                <input class="form-control" name="phone" placeholder="Enter your phone number (2547...)" type="text"><br>
+            </fieldset>
+            <div class="form-group">
+                <input class="btn btn-info mt-4" value="Pay" type="submit">
+            </div>
+        </form>
+    </div>
+{% endblock %}

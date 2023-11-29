@@ -1,0 +1,80 @@
+{% extends 'master.html' %}
+{% load static %}
+{% block content %}
+    <body>
+
+    <!-- ======= Header ======= -->
+
+
+    <!-- ======= Hero Section ======= -->
+    <!-- End Hero -->
+
+
+
+    <main id="main">
+
+
+        <!-- ======= About Section ======= -->
+        <div id="about" class="">
+
+
+            <form action="{% url 'donations-url' %}">
+                <h1 class="text-info text-center">Donate Today</h1>
+                <!-- The form -->
+                <div class="example m-auto d-flex justify-content-center col-3">
+                    <input type="text" placeholder="Search name.." name="q">
+                    <button type="submit"><i class="fa fa-search"></i></button>
+                </div>
+            </form>
+            {% for donation in donations %}
+
+                <div id="donate-container">
+                    <div class="row d-flex col-4 m-auto my-3 border"  id="inside-div">
+
+                        <form action="{% url 'donations-url' %}" method="post" class="form">
+                            {% csrf_token %}
+
+                            <div class="p-3 d-inline-flex">
+                                <field-set>
+                                    <h3><u>Data of the Donation Recipient</u></h3>
+
+                                    <b>Name:</b> <p>{{ donation.name }}</p>
+                                    <b>Phone no:</b> <p>{{ donation.phone }}</p>
+                                    <b>Purpose:</b> <p>{{ donation.purpose }}</p>
+
+
+                                </field-set>
+
+                            </div><br><br>
+
+                        </form>
+                        <div class="form-group p-2">
+                            <a href="/donations/donate/{{ donation.id }}"><button class="btn btn-success">Donate</button></a>
+                            <a href="/donations/update/{{ donation.id }}"><button class="btn btn-info">Update</button></a>
+                            <a href="/donations/delete/{{ donation.id }}"><button class="btn btn-danger">Delete</button></a>
+                        </div>
+
+                    </div>
+                    <div>
+
+                    </div>
+                </div>
+            {% endfor %}
+
+
+
+
+
+        </div>
+
+
+
+
+
+
+        </section><!-- End About Section -->
+
+    </main>
+    <!-- ======= Footer ======= -->
+
+{% endblock %}

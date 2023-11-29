@@ -1,0 +1,19 @@
+{% extends 'master.html' %}
+{% load static %}
+{% block content %}
+    <div class="row d-flex col-4  my-5 m-auto">
+        <form method="post" action="/donations/update/{{ donation.id }}" enctype="multipart/form-data">
+            {% csrf_token %}
+            <fieldset>
+                <legend class="border-bottom mb-4 my-5">Updating donation data</legend>
+                <input value="{{ donation.name }}" placeholder="Recipient name" class="form-control" name="name" type="text"> <br>
+                <input value="{{ donation.phone }}" placeholder="Recipient Phone No" class="form-control" name="phone" type="text"> <br>
+                <input value="{{ donation.purpose }}" placeholder="Purpose of contribution" class="form-control" name="purpose" type="text"> <br>
+            </fieldset>
+            <div class="form-group">
+                <input class="btn btn-info mt-4" value="Update" type="submit">
+            </div>
+        </form>
+
+    </div>
+{% endblock %}

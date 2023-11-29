@@ -1,0 +1,28 @@
+{% extends 'master.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+{% load crispy_forms_filters %}
+
+{% block content %}
+    <div class="row d-flex col-4 m-auto my-5">
+        <h1 class="text-info text-center my-5">Donation Form</h1>
+        {% for form in form %}
+        	{{ message }}
+        {% endfor %}
+
+        <form action="{% url 'add-form-url' %}" method="post" class="form">
+            {% csrf_token %}
+            <field-set>
+
+                {{ form|crispy }}
+            </field-set>
+            <br>
+            <div class="login-button">
+                <input type="submit" value="Save" class="btn btn-info">
+            </div>
+
+            <br>
+        </form>
+
+    </div>
+{% endblock %}
